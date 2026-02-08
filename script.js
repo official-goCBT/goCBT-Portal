@@ -132,3 +132,26 @@ self.addEventListener('fetch', (e) => {
     caches.match(e.request).then((res) => res || fetch(e.request))
   );
 });
+/* --- NOTIFICATION MODULE --- */
+function requestNotificationPermission() {
+    if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log("Notification permission granted.");
+            }
+        });
+    }
+}
+
+// Facilitator function to "Notify Students"
+function triggerGlobalNotification(message) {
+    if (Notification.permission === 'granted') {
+        const options = {
+            body: message,
+            icon: 'https://cdn-icons-png.flaticon.com/512/3413/3413535.png'
+        };
+        new Notification("goCBT Admin Update", options);
+    } else {
+        alert("Notification permission not granted.");
+    }
+}

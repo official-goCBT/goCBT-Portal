@@ -220,7 +220,7 @@ function showRegistration(type) {
 }
 // Initialize EmailJS (Get your Public Key from emailjs.com)
 (function() {
-    emailjs.init("YOUR_PUBLIC_KEY"); 
+    emailjs.init("service_32pw0dm"); 
 })();
 
 // Toggle Modal

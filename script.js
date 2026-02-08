@@ -218,3 +218,45 @@ function showRegistration(type) {
     alert(msg);
     // You can use window.location.href = 'reg-page.html' here
 }
+// Initialize EmailJS (Get your Public Key from emailjs.com)
+(function() {
+    emailjs.init("YOUR_PUBLIC_KEY"); 
+})();
+
+// Toggle Modal
+function toggleAdmission(show) {
+    document.getElementById('admissionModal').classList.toggle('hidden', !show);
+}
+
+// Step Navigation
+function nextStep(stepNumber) {
+    document.querySelectorAll('.form-step').forEach(step => step.classList.add('hidden'));
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    
+    document.getElementById('step' + stepNumber).classList.remove('hidden');
+    document.getElementById('s' + stepNumber).classList.add('active');
+}
+
+// Handle Email Submission
+document.getElementById('admissionForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const btn = this.querySelector('button[type="submit"]');
+    btn.innerText = "Sending...";
+    btn.disabled = true;
+
+    // Send to gocbtinfo@gmail.com via EmailJS
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+        .then(() => {
+            alert('Application Sent Successfully!');
+            toggleAdmission(false);
+            this.reset();
+            nextStep(1);
+        }, (error) => {
+            alert('Failed to send: ' + JSON.stringify(error));
+        })
+        .finally(() => {
+            btn.innerText = "Submit Application";
+            btn.disabled = false;
+        });
+});

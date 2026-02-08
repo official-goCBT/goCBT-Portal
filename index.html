@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>goCBT | Integrated Portal</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00d4ff">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="installBanner" class="hidden">
+    Get the full experience: 
+    <button onclick="installApp()">Install goAPP</button>
+</div>
+
+<div id="errorToast">
+    <span class="icon">⚠️</span>
+    <span id="errorMessage">Invalid Credentials</span>
+</div>
+
+<div class="container">
+    <div id="authCard" class="auth-card">
+        <div class="logo">goCBT</div>
+        <h2 id="formTitle">Student Portal</h2>
+
+        <div class="role-toggle">
+            <input type="radio" name="role" id="stuTab" checked onclick="switchForm('student')">
+            <label for="stuTab">Student</label>
+            <input type="radio" name="role" id="facTab" onclick="switchForm('facilitator')">
+            <label for="facTab">Facilitator</label>
+            <div id="slider" class="toggle-slider"></div>
+        </div>
+
+        <form onsubmit="event.preventDefault(); handleLogin();">
+            <div class="input-group">
+                <label id="idLabel">Registration Number</label>
+                <input type="text" id="userID" placeholder="e.g., 2024/CS/001" required>
+            </div>
+
+            <div class="input-group">
+                <label id="passLabel">Access PIN</label>
+                <div class="password-wrapper">
+                    <input type="password" id="userPass" placeholder="••••" required>
+                    <span class="toggle-password" id="toggleIcon" onclick="togglePasswordVisibility()">SHOW</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                <span class="btn-text">Sign In to Portal</span>
+                <div class="spinner" id="btnSpinner"></div>
+            </button>
+        </form>
+
+        <div class="auth-footer" id="authFooter">
+            <p>New here? <a href="#" class="link-btn" onclick="alert('Enrollment starting soon...')">Join Students</a></p>
+        </div>
+    </div>
+
+    <div id="adminView" class="auth-card admin-card hidden">
+        <div class="admin-header">
+            <div class="logo" style="font-size: 1.5rem;">goCBT Admin</div>
+            <button class="btn btn-danger" style="width:auto;" onclick="logout()">Logout</button>
+        </div>
+        <h3 id="adminWelcome">Dashboard</h3>
+        <div class="stats-grid">
+            <div class="stat-item"><span>Logins</span><div id="totalLogs">0</div></div>
+            <div class="stat-item"><span>Active Today</span><div id="activeUsers">0</div></div>
+        </div>
+        <input type="text" id="searchBar" onkeyup="searchTable()" placeholder="🔍 Search records...">
+        <div style="overflow-x: auto;">
+            <table>
+                <thead><tr><th>Student</th><th>Reg No</th><th>Logs</th><th>Last Seen</th></tr></thead>
+                <tbody id="auditBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

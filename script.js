@@ -184,7 +184,7 @@ function showRegistration(type) {
         "Redirecting to Student Enrollment Form..." : 
         "Opening Facilitator Application Portal...";
     alert(msg);
-    // You can use window.location.href = 'reg-page.html' here
+    /You can use window.location.href = 'reg-page.html' here
 }
 
 function switchForm(role) {
@@ -216,7 +216,7 @@ function showRegistration(type) {
         "Redirecting to Student Enrollment Form..." : 
         "Opening Facilitator Application Portal...";
     alert(msg);
-    // You can use window.location.href = 'reg-page.html' here
+    window.location.href = 'reg-page.html';
 }
 // Initialize EmailJS (Get your Public Key from emailjs.com)
 (function() {

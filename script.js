@@ -155,3 +155,34 @@ function triggerGlobalNotification(message) {
         alert("Notification permission not granted.");
     }
 }
+function switchForm(role) {
+    const formTitle = document.getElementById('formTitle');
+    const authFooter = document.getElementById('authFooter');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (role === 'facilitator') {
+        formTitle.innerText = "Facilitator Portal";
+        submitBtn.innerText = "Secure Admin Login";
+        // Dynamic "Apply" button
+        authFooter.innerHTML = `
+            <p>Want to join the staff?</p>
+            <button class="btn btn-secondary" onclick="showRegistration('facilitator')">Apply as Facilitator</button>
+        `;
+    } else {
+        formTitle.innerText = "Student Portal";
+        submitBtn.innerText = "Sign In to Portal";
+        // Dynamic "Join" button
+        authFooter.innerHTML = `
+            <p>New to goCBT?</p>
+            <button class="btn btn-secondary" onclick="showRegistration('student')">Join Students</button>
+        `;
+    }
+}
+
+function showRegistration(type) {
+    const msg = type === 'student' ? 
+        "Redirecting to Student Enrollment Form..." : 
+        "Opening Facilitator Application Portal...";
+    alert(msg);
+    // You can use window.location.href = 'reg-page.html' here
+}

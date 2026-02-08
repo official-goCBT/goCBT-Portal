@@ -246,7 +246,7 @@ document.getElementById('admissionForm').addEventListener('submit', function(eve
     btn.disabled = true;
 
     // Send to gocbtinfo@gmail.com via EmailJS
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+    emailjs.sendForm('service_32pw0dm', 'template_qv51e3o', this)
         .then(() => {
             alert('Application Sent Successfully!');
             toggleAdmission(false);
